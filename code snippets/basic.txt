@@ -1,0 +1,46 @@
+CREATE TABLE `Directors` (
+  `director_id` varchar(50),
+  `director_name` varchar(50),
+  `agent_id` varchar(50),
+  PRIMARY KEY (`director_id`),
+  KEY `Key` (`director_name`),
+  KEY `FK` (`agent_id`)
+);
+
+CREATE TABLE `Movies` (
+  `movie_name` varchar(50),
+  `director_id` varchar(50),
+  `genre` varchar(50),
+  `release_date` date,
+  `length` varchar(50),
+  `cnmgraphr_id` varchar(50),
+  PRIMARY KEY (`movie_name`),
+  KEY `FK1` (`director_id`),
+  KEY `Key` (`genre`, `release_date`, `length`),
+  KEY `FK2` (`cnmgraphr_id`)
+);
+
+CREATE TABLE `Cinematographer` (
+  `cnmgraphr_id` varchar(50),
+  `cnmgraphr_name` varchar(50),
+  PRIMARY KEY (`cnmgraphr_id`),
+  KEY `Key` (`cnmgraphr_name`)
+);
+
+
+CREATE TABLE `Agents` (
+  `agent_id` varchar(50),
+  `agent_name` varchar(50),
+  PRIMARY KEY (`agent_id`),
+  KEY `Key` (`agent_name`)
+);
+
+
+CREATE TABLE `Business` (
+  `movie_name` varchar(50),
+  `budget` varchar(50),
+  `box_office` varchar(50),
+  `state` varchar(50),
+  KEY `PK,FK` (`movie_name`),
+  KEY `Key` (`budget`, `box_office`, `state`)
+);

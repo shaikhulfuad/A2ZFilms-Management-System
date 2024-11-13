@@ -1,0 +1,285 @@
+CREATE database A2ZFilms;
+
+CREATE TABLE [Agents] (
+  [agent_id] varchar(50),
+  [agent_name] varchar(50),
+  [a_age] int,
+  PRIMARY KEY ([agent_id])
+);
+
+CREATE INDEX [Key] ON  [Agents] ([agent_name], [a_age]);
+
+CREATE TABLE [Directors] (
+  [director_id] varchar(50),
+  [director_name] varchar(50),
+  [agent_id] varchar(50),
+  [d_age] int,
+  PRIMARY KEY ([director_id])
+);
+
+CREATE INDEX [Key] ON  [Directors] ([director_name], [d_age]);
+
+CREATE INDEX [FK] ON  [Directors] ([agent_id]);
+
+CREATE TABLE [Movies] (
+  [movie_name] varchar(50),
+  [director_id] varchar(50),
+  [genre] varchar(50),
+  [release_date] date,
+  [length] varchar(50),
+  [cnmgraphr_id] varchar(50),
+  PRIMARY KEY ([movie_name])
+);
+
+CREATE INDEX [FK1] ON  [Movies] ([director_id]);
+
+CREATE INDEX [Key] ON  [Movies] ([genre], [release_date], [length]);
+
+CREATE INDEX [FK2] ON  [Movies] ([cnmgraphr_id]);
+
+CREATE TABLE [Cinematographer] (
+  [cnmgraphr_id] varchar(50),
+  [cnmgraphr_name] varchar(50),
+  [c_age] int,
+  PRIMARY KEY ([cnmgraphr_id])
+);
+
+CREATE INDEX [Key] ON  [Cinematographer] ([cnmgraphr_name], [c_age]);
+
+CREATE TABLE [Business] (
+  [movie_name] varchar(50),
+  [budget] varchar(50),
+  [box_office] varchar(50),
+  [state] varchar(50)
+);
+
+CREATE INDEX [PK,FK] ON  [Business] ([movie_name]);
+
+CREATE INDEX [Key] ON  [Business] ([budget], [box_office], [state]);
+
+
+
+
+INSERT INTO agents (agent_id, agent_name, a_age)
+VALUES ('A15', 'Coorner', 35),
+('A24', 'Ryan', 33),
+('A20', 'Reynolds', 37),
+('A29', 'Cillian', 30),
+('A18', 'Neilson', 41),
+('A31', 'Franco', 43),
+('A37', 'Kevin', 39),
+('A40', 'Spacey', 29),
+('A49', 'Anthew', 43),
+('A27', 'Hopkins', 29),
+('A46', 'Russell', 35),
+('A44', 'Crowee', 44),
+('A55', 'Joseph', 50),
+('A63', 'Gordon', 42),
+('A69', 'Levitt', 47),
+('A58', 'Gosling', 36),
+('A89', 'Hemsworth', 32),
+('A77', 'Ruffalo', 38);
+
+INSERT INTO directors (director_id, director_name, agent_id, d_age) 
+VALUES ('D103', 'Robert Zemeckis', 'A15', 52),
+('D203', 'Takashi Shimizu', 'A24', 49),
+('D75', 'Martin Scorsese', 'A15', 77),
+('D105', 'Quentin Tarantino', Null, 47),
+('D111', 'Christopher Nolan', Null, 44),
+('D76', 'Steven Speilberg', 'A18', 77),
+('D109', 'Guy Ritchie', Null, 50),
+('D61', 'Stanley Kubrik', Null, 78),
+('D115', 'Richard Linklater', 'A20', 55),
+('D153', 'Hayao Miyazaki', 'A31', 53),
+('D148', 'Denis Villeneuve', 'A37', 54),
+('D136', 'Ang Lee', 'A31', 42),
+('D151', 'Mel Gibson', 'A40', 41),
+('D155', 'Paul Greengrass', 'A49', 58),
+('D143', 'Alejendro Amenabar', 'A29', 57),
+('D159', 'Rob Reiner', 'A27', 51),
+('D142', 'Edgar Wright', 'A46', 63),
+('D150', 'Gore Verbinski', 'A44', 65),
+('D120', 'Asghar Farhadi', 'A55', 44),
+('D180', 'Brian De Palma', 'A63', 49),
+('D201', 'Damien Chazelle', 'A69', 60),
+('D128', 'David Fincher', 'A58', 60),
+('D303', 'Sam Mendes', 'A89', 59),
+('D182', 'Roman Polanski', 'A77', 54);
+
+
+INSERT INTO cinematographer (cnmgraphr_id, cnmgraphr_name, c_age) 
+VALUES ('C05', 'Collins', 50),
+('C018', 'Ralph', 55),
+('C09', 'Fiennes', 57),
+('C032', 'Chapman', 56),
+('C051', 'Paul', 43),
+('C034', 'Schrader', 44),
+('C043', 'R.Webb', 47),
+('C019', 'Weisly', 38),
+('C080', 'Michael', 43),
+('C022', 'Matheww', 49),
+('C027', 'Mcchonouhey', 48),
+('C011', 'Tom', 50),
+('C033', 'Hardy', 51),
+('C035', 'Thomas', 52),
+('C014', 'Shelby', 45),
+('C012', 'Jonas', 46),
+('C015', 'Tiedmann', 48),
+('C026', 'Egon', 47),
+('C029', 'Doppler', 49),
+('C030', 'Daniel Day', 51),
+('C025', 'D.Lewis', 40),
+('C07', 'Douglas', 41),
+('C03', 'Kirk', 39),
+('C023', 'Bobb', 37),
+('C040', 'Nicholson', 35),
+('C010', 'Robin', 36),
+('C017', 'Williams', 39),
+('C013', 'James', 39),
+('C066', 'Faulkner', 47),
+('C053', 'Caprio', 44),
+('C070', 'Christian', 54),
+('C072', 'Ben', 48),
+('C073', 'Bale', 47),
+('C075', 'Stewart', 41),
+('C079', 'Affleck', 40),
+('C061', 'Holland', 39),
+('C085', 'Gyllenhaal', 37),
+('C086', 'Pessci', 49),
+('C089', 'Willder', 44),
+('C046', 'B.Billy', 46),
+('C041', 'Cumberbatch', 41);
+
+
+
+INSERT INTO movies (movie_name, director_id, genre, release_date, length, cnmgraphr_id) 
+VALUES ('Forrest Grump', 'D103', 'Comedy-Drama', '1994-06-23', '2h 32m', 'C05'),
+('Cast Away', 'D103', 'Adventure', '2000-12-07', '2h 23m', 'C018'),
+('The Walk', 'D103', 'Adventure', '2015-08-15', '2h 3m', 'C09'),
+('Welcome to Marween', 'D103', 'Fantasy', '2018-12-21', '1h 56m', 'C09'),
+('The Grudge', 'D203', 'Horror', '2004-10-22', '1h 36m', 'C032'),
+('Taxi Driver', 'D75', 'Drama', '1976-02-08', '1h 54m', 'C051'),
+('Raging Bull', 'D75', 'Drama', '1980-11-18', '2h 9m', 'C034'),
+('King of Comedy', 'D75', 'Comedy', '1982-12-18', '1h 49m', 'C051'),
+('Goodfellas', 'D75', 'Crime', '1990-09-10', '2h 22m', 'C051'),
+('Casino', 'D75', 'Crime', '1995-11-22', '2h 58m', 'C051'),
+('Cape Fear', 'D75', 'Suspense', '1991-11-13', '2h 8m', 'C043'),
+('The Aviator', 'D75', 'Biography', '2004-12-14', '2h 50m', 'C019'),
+('The Departed', 'D75', 'Thriller', '2006-09-16', '2h 31m', 'C019'),
+('Shutter Island', 'D75', 'Mystery', '2010-02-13', '2h 19m', 'C080'),
+('Gangs of NewYork', 'D75', 'Crime', '2002-03-29', '2h 50m', 'C051'),
+('The Irishman', 'D75', 'Crime', '2019-11-11', '3h 30m', 'C051'),
+('Django Unchained', 'D105', 'Western', '2012-12-25', '2h 45m', 'C018'),
+('Inglorious Bastards', 'D105', 'War', '2009-07-28', '2h 33m', 'C022'),
+('Kill Bill', 'D105', 'Action', '2003-10-10', '1h 52m', 'C027'),
+('Kill Bill 2', 'D105', 'Action', '2004-04-08', '2h 18m', 'C027'),
+('Reservoir Dogs', 'D105', 'Crime', '1992-09-02', '1h 40m', 'C011'),
+('Insomnia', 'D111', 'Thriller', '2002-05-24', '1h 55m', 'C080'),
+('Memento', 'D111', 'Mystery', '2000-09-05', '1h 52m', 'C033'),
+('Dunkirk', 'D111', 'War', '2017-07-13', '1h 46m', 'C035'),
+('The Prestige', 'D111', 'Mystery', '2006-10-17', '2h 10m', 'C035'),
+('Tenet', 'D111', 'Sci-fi', '2020-01-01', '2h 34m', 'C014'),
+('Jurassic Park', 'D76', 'Adventure', '1993-06-03', '2h 7m', 'C012'),
+('A.I.', 'D76', 'Sci-fi', '2001-06-26', '2h 26m', 'C015'),
+('Schlinders List', 'D76', 'War', '1993-11-30', '3h 17m', 'C026'),
+('The Terminal', 'D76', 'Rom-Com', '2004-06-09', '2h 8m', 'C029'),
+('Lincoln', 'D76', 'Drama', '2012-10-08', '2h 30m', 'C030'),
+('Minority Report', 'D76', 'Sci-fi', '2002-06-17', '2h 26m', 'C029'),
+('Munich', 'D76', 'Drama', '2005-12-23', '2h 44m', 'C025'),
+('Jaws', 'D76', 'Horror', '1978-07-31', '2h 13m', 'C07'),
+('Close Encounters', 'D76', 'Sci-fi', '1977-04-13', '2h 15m', 'C03'),
+('Snatch', 'D109', 'Comedy', '2000-02-27', '1h 44m', 'C023'),
+('The Gentlemen', 'D109', 'Action', '2019-11-09', '1h 53m', 'C040'),
+('The Shining', 'D61', 'Horror', '1980-10-01', '2h 26m', 'C010'),
+('Eyes Wide Shut', 'D61', 'Mystery', '1999-01-31', '2h 39m', 'C017'),
+('Full Metal Jacket', 'D61', 'War', '1987-06-17', '1h 56m', 'C013'),
+('Before Sunrise', 'D115', 'Romance', '1995-03-25', '1h 45m', 'C066'),
+('Before Sunset', 'D115', 'Romance', '2004-06-17', '1h 20m', 'C066'),
+('Before Midnight', 'D115', 'Romance', '2013-05-22', '1h 50m', 'C066'),
+('Princess Mononoke', 'D153', 'Animation', '1997-08-19', '2h 6m', 'C053'),
+('Spirited Away', 'D153', 'Animation', '2001-06-20', '2h 5m', 'C053'),
+('Prisoners', 'D148', 'Mystery', '2013-09-18', '2h 33m', 'C025'),
+('Arrival', 'D148', 'Sci-fi', '2016-09-02', '1h 55m', 'C070'),
+('Life Of Pi', 'D136', 'Adventure', '2012-11-21', '2h 7m', 'C072'),
+('Hacksaw Ridge', 'D151', 'War', '2016-10-16', '2h 17m', 'C073'),
+('Captain Phillips', 'D155', 'Action', '2013-10-10', '2h 13m', 'C073'),
+('The Others', 'D143', 'Horror', '2001-08-02', '1h 44m', 'C075'),
+('Stand By Me', 'D159', 'Adventure', '1986-08-22', '1h 29m', 'C034'),
+('Grindhouse', 'D142', 'Horror', '2007-04-06', '3h 13m', 'C079'),
+('The Ring', 'D150', 'Horror', '2002-10-02', '2h 25m', 'C061'),
+('A Seperation', 'D120', 'Drama', '2011-03-16', '2h 3m', 'C011'),
+('Scarface', 'D180', 'Crime', '1983-12-01', '2h 50m', 'C022'),
+('La La Land', 'D201', 'Romance', '2018-09-11', '2h 8m', 'C070'),
+('Whiplash', 'D201', 'Drama', '2014-01-23', '1h 47m', 'C085'),
+('Seven', 'D128', 'Crime', '1995-09-15', '2h 8m', 'C086'),
+('Gone Girl', 'D128', 'Thriller', '2014-09-29', '2h 29m', 'C089'),
+('The Social Network', 'D128', 'Biography', '2010-10-01', '2h 1m', 'C089'),
+('1917', 'D303', 'War', '2019-12-04', '1h 59m', 'C046'),
+('The Pianist', 'D182', 'Biography', '2002-09-06', '2h 25m', 'C041');
+
+
+
+INSERT INTO business (movie_name, budget, box_office, state) 
+VALUES ('Forrest Grump', '55m USD', '678m USD', 'Big-Blockbuster'),
+('Cast Away', '90m USD', '429m USD', 'Blockbuster'),
+('The Walk', '35m USD', '61m USD', 'Hit'),
+('Welcome to Marween', '39m USD', '13m USD', 'Disaster'),
+('The Grudge', '10m USD', '187m USD', 'Super-hit'),
+('Taxi Driver', '2m USD', '30m USD', 'Hit'),
+('Raging Bull', '18m USD', '24m USD', 'Average'),
+('King of Comedy', '19m USD', '3m USD', 'Flop'),
+('Goodfellas', '25m USD', '47m USD', 'Hit'),
+('Casino', '40m USD', '116m USD', 'Super-hit'),
+('Cape Fear', '35m USD', '182m USD', 'Super-hit'),
+('The Aviator', '110m USD', '213m USD', 'Super-hit'),
+('The Departed', '90m USD', '292m USD', 'Blockbuster'),
+('Shutter Island', '80m USD', '295m USD', 'Blockbuster'),
+('Gangs of NewYork', '100m USD', '194m USD', 'Super-hit'),
+('The Irishman', '177m USD', '8m USD', 'Disaster'),
+('Django Unchained', '100m USD', '426m USD', 'Blockbuster'),
+('Inglorious Bastards', '70m USD', '321m USD', 'Blockbuster'),
+('Kill Bill', '30m USD', '181m USD', 'Super-hit'),
+('Kill Bill 2', '30m USD', '152m USD', 'Super-hit'),
+('Reservoir Dogs', '2m USD', '7m USD', 'Average'),
+('Insomnia', '46m USD', '113m USD', 'Hit'),
+('Memento', '9m USD', '39m USD', 'Hit'),
+('Dunkirk', '150m USD', '526m USD', 'Blockbuster'),
+('The Prestige', '40m USD', '109m USD', 'Hit'),
+('Tenet', '205m USD', '121m USD', 'Flop'),
+('Jurassic Park', '63m USD', '1B USD', 'Big-Blockbuster'),
+('A.I.', '100m USD', '235m USD', 'Super-hit'),
+('Schlinders List', '22m USD', '322m USD', 'Blockbuster'),
+('The Terminal', '60m USD', '219m USD', 'Super-hit'),
+('Lincoln', '65m USD', '59m USD', 'Flop'),
+('Minority Report', '102m USD', '358m USD', 'Super-hit'),
+('Munich', '70m USD', '54m USD', 'Flop'),
+('Jaws', '9m USD', '470m USD', 'Blockbuster'),
+('Close Encounters', '20m USD', '306m USD', 'Blockbuster'),
+('Snatch', '10m USD', '84m USD', 'Hit'),
+('The Gentlemen', '22m USD', '115m USD', 'Hit'),
+('The Shining', '19m USD', '46m USD', 'Hit'),
+('Eyes Wide Shut', '60m USD', '162m USD', 'Super-hit'),
+('Full Metal Jacket', '30m USD', '120m USD', 'Hit'),
+('Before Sunrise', '2m USD', '5m USD', 'Average'),
+('Before Sunset', '3m USD', '16m USD', 'Hit'),
+('Before Midnight', '3m USD', '23m USD', 'Hit'),
+('Princess Mononoke', '23m USD', '159m USD', 'Super-hit'),
+('Spirited Away', '18m USD', '347m USD', 'Blockbuster'),
+('Prisoners', '46m USD', '122m USD', 'Hit'),
+('Arrival', '47m USD', '203m USD', 'Super-hit'),
+('Life Of Pi', '120m USD', '609m USD', 'Blockbuster'),
+('Hacksaw Ridge', '40m USD', '180m USD', 'Super-hit'),
+('Captain Phillips', '55m USD', '218m USD', 'Super-hit'),
+('The Others', '17m USD', '209m USD', 'Super-hit'),
+('Stand By Me', '8m USD', '53m USD', 'Hit'),
+('Grindhouse', '67m USD', '21m USD', 'Disaster'),
+('The Ring', '48m USD', '249m USD', 'Super-hit'),
+('A Seperation', '1m USD', '24m USD', 'Hit'),
+('Scarface', '37m USD', '66m USD', 'Hit'),
+('La La Land', '30m USD', '446m USD', 'Blockbuster'),
+('Whiplash', '23m USD', '27m USD', 'Average'),
+('Seven', '33m USD', '327m USD', 'Blockbuster'),
+('Gone Girl', '61m USD', '369m USD', 'Blockbuster'),
+('The Social Network', '40m USD', '224m USD', 'Super-hit'),
+('1917', '100m USD', '368m USD', 'Super-hit'),
+('The Pianist', '35m USD', '120m USD', 'Hit');
